@@ -16,8 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final hola = PageController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -60,20 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           isActive: true,
                           title: 'Home',
                           press: () {
-                            setState(() {
-                              hola.jumpToPage(1);
-                            });
+                            setState(
+                              () => context.read<HomeCubit>().changePage(1),
+                            );
                           },
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         MenuItems(
-                          title: 'Productas',
+                          title: 'Products',
                           press: () {
-                            setState(() {
-                              hola.jumpToPage(2);
-                            });
+                            setState(
+                              () => context.read<HomeCubit>().changePage(2),
+                            );
                           },
                         ),
                         const SizedBox(
@@ -97,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             body: ListView(
-              controller: hola,
+              controller: context.read<HomeCubit>().homePageController,
               children: const [
                 //now we create menu and header
                 Navigation(),
