@@ -1,7 +1,18 @@
+import 'package:db_client/db_client.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_web/firebase_options.dart';
+import 'package:flutter_ecommerce_web/repositories/category_repository.dart';
 import 'package:flutter_ecommerce_web/router/router.dart';
 
-void main() {
+final dbClient = DbClient();
+final categoryRepository = CategoryRepository(dbClient: dbClient);
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

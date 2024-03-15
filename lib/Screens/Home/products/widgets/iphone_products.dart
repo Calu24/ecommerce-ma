@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
-import 'package:flutter_ecommerce_web/model/iphone_model.dart';
+import 'package:flutter_ecommerce_web/models/iphone_model.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
