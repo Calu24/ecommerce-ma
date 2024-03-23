@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,7 +60,7 @@ class DbClient {
 
     task.stream.listen((state) {
       if (state.taskState == LoadBundleTaskState.success) {
-        print('Bundle loaded successfully');
+        log('Bundle loaded successfully');
       }
     });
 
@@ -74,5 +75,32 @@ class DbClient {
           .map((doc) => DbRecord(id: doc.id, data: doc.data()))
           .toList(),
     );
+  }
+
+  /// Streams all records from the specified collection.
+  Stream<List<DbRecord>> streamAll({
+    required String collection,
+  }) {
+    final query = _firestore.collection(collection);
+    return query.snapshots().map(
+          (querySnap) => querySnap.docs
+              .map((doc) => DbRecord(id: doc.id, data: doc.data()))
+              .toList(),
+        );
+  }
+
+  /// Streams all records from the specified collection where the field
+  Stream<List<DbRecord>> streamAllByField({
+    required String collection,
+    required String field,
+    required dynamic value,
+  }) {
+    final query =
+        _firestore.collection(collection).where(field, isEqualTo: value);
+    return query.snapshots().map(
+          (querySnap) => querySnap.docs
+              .map((doc) => DbRecord(id: doc.id, data: doc.data()))
+              .toList(),
+        );
   }
 }

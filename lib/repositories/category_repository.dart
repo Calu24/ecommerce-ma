@@ -11,10 +11,13 @@ class CategoryRepository {
       // final categories = await dbClient.fetchAll(collection: 'categories');
       final categories = await dbClient.fetchAllFromBundle(
         bundleId: 'categories',
-        bundleUrl: 'https://us-central1-ecommerce-ma-20f14.cloudfunctions.net/ext-firestore-bundle-builder-serve',
+        bundleUrl:
+            'https://us-central1-ecommerce-ma-20f14.cloudfunctions.net/ext-firestore-bundle-builder-serve',
       );
       return categories
-          .map<Category>((category) => Category.fromJson(category.data, id: category.id))
+          .map<Category>(
+            (category) => Category.fromJson(category.data, id: category.id),
+          )
           .toList();
     } catch (e) {
       throw Exception('Failed to fetch categories: $e');
