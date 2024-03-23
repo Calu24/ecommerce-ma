@@ -54,3 +54,5 @@ lcov.info
 
 # Melos config: https://melos.invertase.dev/~melos-latest/getting-started
 pubspec_overrides.yaml
+
+service-account-file.json

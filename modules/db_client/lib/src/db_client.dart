@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:db_client/src/db_record.dart';
+import 'package:http/http.dart' as http;
 
 /// A client for interacting with the database.
 class DbClient {
@@ -43,5 +46,33 @@ class DbClient {
     } catch (e) {
       throw Exception('Failed to fetch records: $e');
     }
+  }
+
+  /// Fetches all records from bundle.
+  Future<List<DbRecord>> fetchAllFromBundle({
+    required String bundleId,
+    required String bundleUrl,
+  }) async {
+    final response = await http.get(Uri.parse('$bundleUrl/$bundleId'));
+    final buffer = Uint8List.fromList(response.body.codeUnits);
+    final task = _firestore.loadBundle(buffer);
+
+    task.stream.listen((state) {
+      if (state.taskState == LoadBundleTaskState.success) {
+        print('Bundle loaded successfully');
+      }
+    });
+
+    await task.stream.last;
+
+    final querySnap = _firestore
+        .collection(bundleId)
+        .get(const GetOptions(source: Source.cache));
+
+    return querySnap.then(
+      (querySnap) => querySnap.docs
+          .map((doc) => DbRecord(id: doc.id, data: doc.data()))
+          .toList(),
+    );
   }
 }

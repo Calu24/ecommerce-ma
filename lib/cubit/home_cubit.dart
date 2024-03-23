@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_web/cubit/home_state.dart';
+import 'package:flutter_ecommerce_web/main.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeState());
@@ -11,6 +12,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(isLoading: true));
 
     // await Future<void>.delayed(const Duration(seconds: 5));
+
+    // final categories = await categoryRepository.fetchCategories();
+
+    // print(categories);
+
+    // await categoryRepository.createCategories();
 
     emit(state.copyWith(isLoading: false));
   }

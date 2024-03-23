@@ -1,0 +1,5 @@
+{
+  "extensions": {
+    "firestore-bundle-builder": "firebase/firestore-bundle-builder@0.1.4"
+  }
+}
