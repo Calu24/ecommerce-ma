@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/products/product_section.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/widgets/banner.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/widgets/bottomnav.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/widgets/menu.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
 import 'package:flutter_ecommerce_web/cubit/home_cubit.dart';
 import 'package:flutter_ecommerce_web/cubit/home_state.dart';
+import 'package:flutter_ecommerce_web/widgets/banner.dart';
+import 'package:flutter_ecommerce_web/widgets/bottomnav.dart';
+import 'package:flutter_ecommerce_web/widgets/menu.dart';
+import 'package:flutter_ecommerce_web/widgets/product_section.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
+
+  static const String route = 'home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -69,9 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         MenuItems(
                           title: 'Products',
                           press: () {
-                            setState(
-                              () => context.read<HomeCubit>().changePage(2),
-                            );
+                            // context.pushNamed(CartScreen.route);
+                            // setState(
+                            //   () => context.read<HomeCubit>().changePage(2),
+                            // );
                           },
                         ),
                         const SizedBox(
@@ -97,14 +100,10 @@ class _HomeScreenState extends State<HomeScreen> {
             body: ListView(
               controller: context.read<HomeCubit>().homePageController,
               children: const [
-                //now we create menu and header
                 Navigation(),
-                //now we create banner
-                //for this import packages
                 HeroBanner(),
                 ProductSection(),
                 BottomNav(),
-                //now we will make our site responsive
               ],
             ),
           );

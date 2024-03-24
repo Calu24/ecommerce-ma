@@ -4,8 +4,8 @@ import 'package:flutter_ecommerce_web/responsive.dart';
 
 class Cateegory extends StatelessWidget {
   const Cateegory({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +63,8 @@ class CategoryCard extends StatefulWidget {
     required this.image,
     required this.title,
     required this.press,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String image;
   final String title;
   final VoidCallback press;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/products/widgets/headphone_product.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/products/widgets/iphone_products.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/products/widgets/samsung_products.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
 import 'package:flutter_ecommerce_web/responsive.dart';
+import 'package:flutter_ecommerce_web/widgets/headphone_product.dart';
+import 'package:flutter_ecommerce_web/widgets/iphone_products.dart';
+import 'package:flutter_ecommerce_web/widgets/samsung_products.dart';
 
 class AllBrandsProduct extends StatefulWidget {
-  const AllBrandsProduct({Key? key}) : super(key: key);
+  const AllBrandsProduct({super.key});
 
   @override
   State<AllBrandsProduct> createState() => _AllBrandsProductState();

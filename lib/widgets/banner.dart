@@ -6,7 +6,7 @@ import 'package:flutter_ecommerce_web/constants.dart';
 
 //change the name of class
 class HeroBanner extends StatefulWidget {
-  const HeroBanner({Key? key}) : super(key: key);
+  const HeroBanner({super.key});
 
   @override
   State<HeroBanner> createState() => _HeroBannerState();
@@ -80,8 +80,8 @@ class SliderCard extends StatelessWidget {
     required this.title,
     required this.image,
     required this.press,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String title;
   final String image;
   final VoidCallback press;

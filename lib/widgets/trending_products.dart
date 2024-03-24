@@ -1,53 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
-import 'package:flutter_ecommerce_web/models/trending_model.dart';
+import 'package:flutter_ecommerce_web/cubit/global_cubit.dart';
+import 'package:flutter_ecommerce_web/main.dart';
+import 'package:flutter_ecommerce_web/models/product.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class TrendingProductCard extends StatelessWidget {
   const TrendingProductCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<GlobalCubit>().state;
     return Padding(
       padding: const EdgeInsets.all(8),
       child: StaggeredGridView.countBuilder(
         //shrink wrap to avoid error
         shrinkWrap: true,
         physics: const ScrollPhysics(),
-        crossAxisCount: 4,
-        itemCount: trendingProducts.length,
+        crossAxisCount: MediaQuery.of(context).size.width > 770 ? 4 : 2,
+        itemCount: state.products.length,
         itemBuilder: (BuildContext context, int index) => TrendingProducts(
-          press: () {},
-          products: trendingProducts[index],
-        ),
-        staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-      ),
-    );
-  }
-}
-
-class MobTrendingProduct extends StatelessWidget {
-  const MobTrendingProduct({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: StaggeredGridView.countBuilder(
-        //shrink wrap to avoid error
-        shrinkWrap: true,
-        physics: const ScrollPhysics(),
-        crossAxisCount: 2,
-        itemCount: trendingProducts.length,
-        itemBuilder: (BuildContext context, int index) => TrendingProducts(
-          press: () {},
-          products: trendingProducts[index],
+          press: () {
+            cartRepository.addProductToCart(
+              state.products[index]!,
+              1,
+            );
+            context.read<GlobalCubit>().addOneToCart();
+          },
+          products: state.products[index],
         ),
         staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
         mainAxisSpacing: 10,
@@ -59,11 +42,11 @@ class MobTrendingProduct extends StatelessWidget {
 
 class TrendingProducts extends StatefulWidget {
   const TrendingProducts({
-    required this.products,
     required this.press,
-    Key? key,
-  }) : super(key: key);
-  final Product products;
+    this.products,
+    super.key,
+  });
+  final Product? products;
   final VoidCallback press;
 
   @override
@@ -97,8 +80,8 @@ class _TrendingProductsState extends State<TrendingProducts> {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  Image.asset(
-                    widget.products.image,
+                  Image.network(
+                    widget.products?.imageUrl ?? '',
                     height: 150,
                     width: 150,
                     fit: BoxFit.contain,
@@ -107,7 +90,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                     height: 10,
                   ),
                   Text(
-                    widget.products.title,
+                    widget.products?.name ?? '',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -117,7 +100,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                     height: 10,
                   ),
                   Text(
-                    '\$${widget.products.price}',
+                    '\$${widget.products?.price}',
                     style: const TextStyle(
                       fontSize: 16,
                     ),

@@ -6,8 +6,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SamsungProductCard extends StatelessWidget {
   const SamsungProductCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class SamsungProductCard extends StatelessWidget {
 
 class MobSamsungProductCard extends StatelessWidget {
   const MobSamsungProductCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +56,8 @@ class SamsungProducts extends StatefulWidget {
   const SamsungProducts({
     required this.samsungproduct,
     required this.press,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final SamsungProduct samsungproduct;
   final VoidCallback press;
 

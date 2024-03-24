@@ -30,6 +30,7 @@ class CategoryRepository {
         await dbClient.add(
           collection: 'categories',
           data: {
+            'id': category.id,
             'name': category.name,
             'description': category.description,
             'imageUrl': category.imageUrl,

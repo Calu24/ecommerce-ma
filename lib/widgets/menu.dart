@@ -1,12 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_web/Screens/cart_screen.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
+import 'package:flutter_ecommerce_web/cubit/global_cubit.dart';
 import 'package:flutter_ecommerce_web/responsive.dart';
+import 'package:go_router/go_router.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +62,25 @@ class Navigation extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: kDarkgreyColor,
-                          size: 25,
+                        onPressed: () => context.pushNamed(CartScreen.route),
+                        icon: Badge(
+                          isLabelVisible: context
+                                  .watch<GlobalCubit>()
+                                  .state
+                                  .cartTotalQuantity !=
+                              0,
+                          label: Text(
+                            context
+                                .watch<GlobalCubit>()
+                                .state
+                                .cartTotalQuantity
+                                .toString(),
+                          ),
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: kDarkgreyColor,
+                            size: 25,
+                          ),
                         ),
                       ),
                       IconButton(
@@ -87,8 +105,8 @@ class Navigation extends StatelessWidget {
 
 class WebMenu extends StatelessWidget {
   const WebMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +136,8 @@ class WebMenu extends StatelessWidget {
 
 class MobMenu extends StatelessWidget {
   const MobMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -159,9 +177,9 @@ class MenuItems extends StatefulWidget {
   const MenuItems({
     required this.title,
     required this.press,
-    Key? key,
+    super.key,
     this.isActive = false,
-  }) : super(key: key);
+  });
   final String title;
   final VoidCallback press;
   final bool isActive;

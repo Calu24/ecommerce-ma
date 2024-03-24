@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
-import 'package:flutter_ecommerce_web/models/headphone_model.dart';
+import 'package:flutter_ecommerce_web/models/iphone_model.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class HeadPhoneProductCard extends StatelessWidget {
-  const HeadPhoneProductCard({
-    Key? key,
-  }) : super(key: key);
+class IPhoneProductCard extends StatelessWidget {
+  const IPhoneProductCard({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,10 @@ class HeadPhoneProductCard extends StatelessWidget {
       shrinkWrap: true,
       physics: const ScrollPhysics(),
       crossAxisCount: 4,
-      itemCount: headphoneProducts.length,
-      itemBuilder: (BuildContext context, int index) => HeadPhoneProducts(
+      itemCount: iPhoneProducts.length,
+      itemBuilder: (BuildContext context, int index) => IphoneProducts(
         press: () {},
-        headphoneproduct: headphoneProducts[index],
+        iPhoneproduct: iPhoneProducts[index],
       ),
       staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
       mainAxisSpacing: 10,
@@ -28,10 +28,10 @@ class HeadPhoneProductCard extends StatelessWidget {
   }
 }
 
-class MobHeadPhoneProductCard extends StatelessWidget {
-  const MobHeadPhoneProductCard({
-    Key? key,
-  }) : super(key: key);
+class MobiPhoneProductCard extends StatelessWidget {
+  const MobiPhoneProductCard({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,10 @@ class MobHeadPhoneProductCard extends StatelessWidget {
       shrinkWrap: true,
       physics: const ScrollPhysics(),
       crossAxisCount: 2,
-      itemCount: headphoneProducts.length,
-      itemBuilder: (BuildContext context, int index) => HeadPhoneProducts(
+      itemCount: iPhoneProducts.length,
+      itemBuilder: (BuildContext context, int index) => IphoneProducts(
         press: () {},
-        headphoneproduct: headphoneProducts[index],
+        iPhoneproduct: iPhoneProducts[index],
       ),
       staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
       mainAxisSpacing: 10,
@@ -52,20 +52,20 @@ class MobHeadPhoneProductCard extends StatelessWidget {
   }
 }
 
-class HeadPhoneProducts extends StatefulWidget {
-  const HeadPhoneProducts({
-    required this.headphoneproduct,
+class IphoneProducts extends StatefulWidget {
+  const IphoneProducts({
+    required this.iPhoneproduct,
     required this.press,
-    Key? key,
-  }) : super(key: key);
-  final HeadPhoneProduct headphoneproduct;
+    super.key,
+  });
+  final IphoneProduct iPhoneproduct;
   final VoidCallback press;
 
   @override
-  State<HeadPhoneProducts> createState() => _HeadPhoneProductsState();
+  State<IphoneProducts> createState() => _IphoneProductsState();
 }
 
-class _HeadPhoneProductsState extends State<HeadPhoneProducts> {
+class _IphoneProductsState extends State<IphoneProducts> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class _HeadPhoneProductsState extends State<HeadPhoneProducts> {
               child: Column(
                 children: [
                   Image.asset(
-                    widget.headphoneproduct.image,
+                    widget.iPhoneproduct.image,
                     height: 150,
                     width: 150,
                     fit: BoxFit.contain,
@@ -102,7 +102,7 @@ class _HeadPhoneProductsState extends State<HeadPhoneProducts> {
                     height: 10,
                   ),
                   Text(
-                    widget.headphoneproduct.title,
+                    widget.iPhoneproduct.title,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -112,7 +112,7 @@ class _HeadPhoneProductsState extends State<HeadPhoneProducts> {
                     height: 10,
                   ),
                   Text(
-                    '\$${widget.headphoneproduct.price}',
+                    '\$${widget.iPhoneproduct.price}',
                     style: const TextStyle(
                       fontSize: 16,
                     ),

@@ -62,6 +62,18 @@ class Product extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'price': price,
+      'imageUrl': imageUrl,
+      'category': category,
+      'stock': stock,
+    };
+  }
+
   static const products = [
     Product(
       id: '1',

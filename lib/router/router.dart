@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/details_screen.dart';
-import 'package:flutter_ecommerce_web/Screens/Home/home_screen.dart';
+import 'package:flutter_ecommerce_web/Screens/cart_screen.dart';
+import 'package:flutter_ecommerce_web/Screens/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class GRouter {
@@ -14,9 +14,10 @@ class GRouter {
         },
         routes: <RouteBase>[
           GoRoute(
-            path: 'details',
+            path: 'cart',
+            name: 'cart',
             builder: (BuildContext context, GoRouterState state) {
-              return const DetailsScreen();
+              return const CartScreen();
             },
           ),
         ],

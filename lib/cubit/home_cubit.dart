@@ -8,17 +8,9 @@ class HomeCubit extends Cubit<HomeState> {
   final homePageController = PageController();
 
   Future<void> load() async {
-    emit(state.copyWith(isLoading: true));
+    // emit(state.copyWith(isLoading: true));
 
-    // await Future<void>.delayed(const Duration(seconds: 5));
-
-    // final categories = await categoryRepository.fetchCategories();
-
-    // print(categories);
-
-    // await categoryRepository.createCategories();
-
-    emit(state.copyWith(isLoading: false));
+    // emit(state.copyWith(isLoading: false));
   }
 
   void changePage(int index) {
