@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_web/Screens/cart_screen.dart';
 import 'package:flutter_ecommerce_web/constants.dart';
 import 'package:flutter_ecommerce_web/cubit/global_cubit.dart';
 import 'package:flutter_ecommerce_web/responsive.dart';
@@ -62,7 +61,7 @@ class Navigation extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () => context.pushNamed(CartScreen.route),
+                        onPressed: () => context.pushNamed('cart'),
                         icon: Badge(
                           isLabelVisible: context
                                   .watch<GlobalCubit>()

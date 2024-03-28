@@ -11,8 +11,6 @@ import 'package:flutter_ecommerce_web/widgets/product_section.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static const String route = 'home';
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -21,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..load(),
+      create: (context) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state.isLoading) {

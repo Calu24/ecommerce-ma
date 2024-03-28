@@ -8,8 +8,6 @@ import 'package:go_router/go_router.dart';
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
-  static const String route = 'cart';
-
   @override
   State<CartScreen> createState() => _CartScreenState();
 }

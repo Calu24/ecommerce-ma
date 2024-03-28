@@ -1,5 +1,17 @@
 {
   "extensions": {
     "firestore-bundle-builder": "firebase/firestore-bundle-builder@0.1.4"
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "venv",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ]
 }

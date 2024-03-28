@@ -40,14 +40,18 @@ dependencies:
   auto_size_text: ^3.0.0
   go_router: ^13.2.0
   equatable: ^2.0.5
-  bloc: ^8.1.3
-  flutter_bloc: ^8.1.4
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
   firebase_core: ^2.27.0
   cloud_firestore: ^4.15.8
 
   db_client: 
     path: modules/db_client
+  payment_client: 
+    path: modules/payment_client
   uuid: ^4.3.3
+  flutter_stripe: ^10.1.1
+  flutter_stripe_web: ^5.1.0
 
 dev_dependencies:
   flutter_test:
