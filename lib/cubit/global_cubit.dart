@@ -14,8 +14,11 @@ class GlobalCubit extends Cubit<GlobalState> {
 
     // await categoryRepository.createCategories();
 
-    productRepository.streamProducts('Category 1').listen((products) {
-      emit(state.copyWith(products: products));
+    productRepository.streamProducts('Category 1').listen((products1) {
+      productRepository.streamProducts('Category 2').listen((products2) {
+        final products = products1..add(products2.first);
+        emit(state.copyWith(products: products));
+      });
     });
 
     // TODO(Lucas): cancel the stream

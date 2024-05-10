@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_web/cubit/global_cubit.dart';
+import 'package:flutter_ecommerce_web/extensiones/two_decimals.dart';
 import 'package:flutter_ecommerce_web/main.dart';
 import 'package:flutter_ecommerce_web/widgets/cart_item_card.dart';
 import 'package:go_router/go_router.dart';
@@ -53,7 +54,7 @@ class _CartScreenState extends State<CartScreen> {
       bottomNavigationBar: BottomAppBar(
         child: Row(
           children: [
-            Expanded(child: Text('Total: \$${cart.totalPrice}')),
+            Expanded(child: Text('Total: \$${cart.totalPrice.twoDecimals}')),
             const SizedBox(width: 16),
             Expanded(
               child: FilledButton(

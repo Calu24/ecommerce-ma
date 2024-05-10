@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_web/cubit/checkout_cubit.dart';
 import 'package:flutter_ecommerce_web/cubit/checkout_state.dart';
+import 'package:flutter_ecommerce_web/extensiones/two_decimals.dart';
 import 'package:flutter_ecommerce_web/main.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -66,7 +67,7 @@ class InjectedCheckout extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: Row(
           children: [
-            Expanded(child: Text('Total: \$${cart.totalPrice}')),
+            Expanded(child: Text('Total: \$${cart.totalPrice.twoDecimals}')),
             const SizedBox(width: 16),
             Expanded(
               child: FilledButton(
@@ -116,12 +117,13 @@ class InjectedCheckout extends StatelessWidget {
       ),
     );
 
-    final response = await paymentClient.processPayment(
+    // final response = await paymentClient.processPayment(
+    await paymentClient.processPayment(
       paymentMethodId: paymentMethod.id,
       items: cart.cartItems.map((cartItem) => cartItem.toJson()).toList(),
     );
-
-    print(paymentMethod);
+    // print('CHau');
+    // print(cart.cartItems.map((cartItem) => cartItem.toJson()).toList());
     // if (response['requiresAction'] == true &&
     //     response['clientSecret'] != null) {
     // final paymentIntent =
@@ -132,8 +134,8 @@ class InjectedCheckout extends StatelessWidget {
     // final response = await paymentClient.confirmPayment(
     //   paymentIntentId: paymentIntent.id,
     // );
-    print('HOla: ');
-    print(response);
+    // print('HOla: ');
+    // print(response);
     // }
     // }
   }

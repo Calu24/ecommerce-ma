@@ -20,10 +20,15 @@ def stripe_pay_endpoint_method_id(req: https_fn.Request) -> https_fn.Response:
     currency = data.get('currency')
     use_stripe_sdk = data.get('useStripeSdk')
 
-    # TODO: Calculate the total price
-    # You should always calculate the order total on the server to prevent
-    # people from directly manipulating the amount on the client
-    total = 1400
+    total_price = sum((item['product']['price'] * item['quantity']) for item in items)
+
+    total_price_formatted = "{:.2f}".format(total_price) #Try this in another sdk
+    if '.' in total_price_formatted:
+        total_price_formatted = total_price_formatted.replace('.', '')
+    else:
+        total_price_formatted += '00'
+
+    print(total_price_formatted)
 
     name = 'projects/ecommerce-ma-20f14/secrets/STRIPE_SECRET_KEY/versions/latest'
     client = secretmanager.SecretManagerServiceClient()
@@ -35,7 +40,7 @@ def stripe_pay_endpoint_method_id(req: https_fn.Request) -> https_fn.Response:
             print(payment_method_id)
             params = {
                 'payment_method': payment_method_id,
-                'amount': total,
+                'amount': total_price_formatted,
                 'currency': currency,
                 'confirm': True,
                 'use_stripe_sdk': use_stripe_sdk,
